@@ -21,7 +21,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-	</properties>
+        <docker.baseImage>java:8</docker.baseImage>
+    </properties>
 
 	<dependencies>
 		<dependency>
@@ -65,7 +66,7 @@
 				<version>0.3.3</version>
 				<configuration>
 					<imageName>example</imageName>
-					<baseImage>java</baseImage>
+					<baseImage>${docker.baseImage}</baseImage>
 					<entryPoint>["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
 					<resources>
 						<resource>
@@ -78,6 +79,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-
 </project>

@@ -24,6 +24,7 @@
         <docker.baseImage>java:8</docker.baseImage>
         <docker.imagePrefix>${user.name}</docker.imagePrefix>
         <docker.imageName>nordic-demo</docker.imageName>
+        <docker.imageVersion>latest</docker.imageVersion>
     </properties>
 
 	<dependencies>
@@ -72,7 +73,7 @@
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.3.3</version>
 				<configuration>
-					<imageName>${docker.imagePrefix}/${docker.imageName}</imageName>
+					<imageName>${docker.imagePrefix}/${docker.imageName}:${docker.imageVersion}</imageName>
 					<baseImage>${docker.baseImage}</baseImage>
 					<cmd>["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/${project.build.finalName}.jar"]</cmd>
 					<resources>

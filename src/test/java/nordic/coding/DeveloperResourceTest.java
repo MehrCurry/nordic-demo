@@ -16,7 +16,7 @@ public class DeveloperResourceTest {
     @Test
     public void testRest() {
         when().
-                get("/developers").
+                get("/developer").
                 then().
                 statusCode(200);
     }

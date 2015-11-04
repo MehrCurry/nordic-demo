@@ -1,0 +1,9 @@
+spring:
+    jpa:
+        database: MYSQL
+        hibernate:
+            ddl-auto: validate
+    datasource:
+        url: jdbc:mysql://db/nordic?createDatabaseIfNotExist=true
+        username: admin
+        password: 123456

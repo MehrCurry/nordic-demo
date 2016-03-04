@@ -18,7 +18,12 @@
         <docker.imagePrefix>${user.name}</docker.imagePrefix>
         <docker.imageName>nordic-demo</docker.imageName>
         <docker.imageVersion>latest</docker.imageVersion>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <asciidoctor.maven.plugin.version>1.5.3</asciidoctor.maven.plugin.version>
+        <asciidoctorj.version>1.5.4</asciidoctorj.version>
         <asciidoclet.version>1.5.4</asciidoclet.version>
+        <jruby.version>1.7.21</jruby.version>
         <sonar.jacoco.reportMissing.force.zero>true</sonar.jacoco.reportMissing.force.zero>
     </properties>
     <dependencyManagement>
@@ -130,7 +135,21 @@
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.4</version>
                 <configuration>
+                    <!-- disable generateReports if you don't want to include the built-in reports -->
+                    <generateReports>true</generateReports>
+                    <generateSitemap>true</generateSitemap>
+                    <relativizeDecorationLinks>false</relativizeDecorationLinks>
+                    <locales>en</locales>
+                    <inputEncoding>UTF-8</inputEncoding>
+                    <outputEncoding>UTF-8</outputEncoding>
                     <asciidoc>
+                        <!-- optional site-wide AsciiDoc attributes -->
+                        <attributes>
+                            <icons>font</icons>
+                            <source-highlighter>coderay</source-highlighter>
+                            <coderay-css>style</coderay-css>
+                            <toclevels>2</toclevels>
+                        </attributes>
                         <templateDirs>
                             <dir>src/site/asciidoc/templates</dir>
                         </templateDirs>
@@ -150,7 +169,24 @@
                     <dependency>
                         <groupId>org.asciidoctor</groupId>
                         <artifactId>asciidoctor-maven-plugin</artifactId>
-                        <version>1.5.3</version>
+                        <version>${asciidoctor.maven.plugin.version}</version>
+                    </dependency>
+                    <!-- Comment this section to use the default jruby artifact provided by the plugin -->
+                    <dependency>
+                        <groupId>org.jruby</groupId>
+                        <artifactId>jruby-complete</artifactId>
+                        <version>${jruby.version}</version>
+                    </dependency>
+                    <!-- Comment this section to use the default AsciidoctorJ artifact provided by the plugin -->
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctorj</artifactId>
+                        <version>${asciidoctorj.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctorj-diagram</artifactId>
+                        <version>RELEASE</version>
                     </dependency>
                 </dependencies>
             </plugin>

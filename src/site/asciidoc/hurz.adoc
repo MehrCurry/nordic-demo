@@ -1,1 +1,12 @@
 = Hurz
+:imagesoutdir: ../../../target/site/images
+:imagesdir: images
+
+A small diagram:
+
+[plantuml,classdiagram,png]
+----
+class A
+class B
+A --|> B
+----

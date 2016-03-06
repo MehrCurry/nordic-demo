@@ -10,15 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * [source,java]
  * --
- * public class Asciidoclet extends Doclet {
- *     private final Asciidoctor asciidoctor = Asciidoctor.Factory.create();
- *
- *     @SuppressWarnings("UnusedDeclaration")
- *     public static boolean start(RootDoc rootDoc) {
- *         new Asciidoclet().render(rootDoc);
- *         return Standard.start(rootDoc);
- *     }
- * }
+ * include::./src/main/java/nordic/coding/NordicApplication.java[lines=30..35ope]
  * --
  *
  * [plantuml,EventBus]
@@ -37,7 +29,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class NordicApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(NordicApplication.class, args);
     }

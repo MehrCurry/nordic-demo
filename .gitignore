@@ -185,3 +185,4 @@ Temporary Items
 .apdisk
 
 derby.log
+jacoco.exec jacoco.it.exec

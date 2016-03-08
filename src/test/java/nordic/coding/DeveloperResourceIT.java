@@ -14,7 +14,7 @@ import static com.jayway.restassured.RestAssured.when;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = NordicApplication.class)
 @WebIntegrationTest("server.port:0")
-public class DeveloperResourceTest {
+public class DeveloperResourceIT {
     @Value("${local.server.port}")
     private int serverPort;
 

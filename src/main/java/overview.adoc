@@ -3,3 +3,9 @@
 `Hurz`
 
 [line-through]#Great#
+
+NOTE: This is written in Asciidoc!
+
+icon:fire[]
+
+Test

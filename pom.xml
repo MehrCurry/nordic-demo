@@ -26,6 +26,10 @@
         <jruby.version>1.7.21</jruby.version>
         <sonar.jacoco.reportMissing.force.zero>true</sonar.jacoco.reportMissing.force.zero>
     </properties>
+    <scm>
+        <connection>scm:git:https://github.com/MehrCurry/nordic-demo.git</connection>
+        <developerConnection>scm:git:https://github.com/MehrCurry/nordic-demo.git</developerConnection>
+    </scm>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>

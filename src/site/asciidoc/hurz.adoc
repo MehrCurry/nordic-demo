@@ -1,6 +1,7 @@
 = Hurz
 :imagesoutdir: ../../../target/site/images
 :imagesdir: images
+:icons: font
 
 A small diagram:
 
@@ -10,3 +11,13 @@ class A
 class B
 A --|> B
 ----
+
+`Hurz`
+
+[line-through]#Great#
+
+NOTE: This is written in Asciidoc!
+
+icon:fire[]
+
+Test

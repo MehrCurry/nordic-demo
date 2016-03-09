@@ -11,9 +11,10 @@ public class DeveloperTest {
 
     @Test
     public void aSimpleTest() {
-        Developer dev = Developer.builder().firstname("JUnit").lastname("Test").build();
+        Developer dev = Developer.builder().firstname("JUnit").lastname("Test").programmingLanguage("Java, Ruby").build();
         assertThat(dev.getFirstname()).isEqualTo("JUnit");
         assertThat(dev.getLastname()).isEqualTo("Test");
+        assertThat(dev.getProgrammingLanguage().split(",")).contains("Java");
+        assertThat(dev.getId()).isNull();
     }
-
 }

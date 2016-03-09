@@ -14,7 +14,10 @@ public class DeveloperTest {
         Developer dev = Developer.builder().firstname("JUnit").lastname("Test").programmingLanguage("Java, Ruby").build();
         assertThat(dev.getFirstname()).isEqualTo("JUnit");
         assertThat(dev.getLastname()).isEqualTo("Test");
-        assertThat(dev.getProgrammingLanguage().split(",")).contains("Java");
+        String[] languages = dev.getProgrammingLanguage().split(",");
+        assertThat(languages).contains("Java");
+        assertThat(languages).doesNotContain("Scala");
+        assertThat(languages.length).isEqualTo(2);
         assertThat(dev.getId()).isNull();
     }
 }

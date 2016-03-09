@@ -2,18 +2,19 @@ package nordic.coding.entity;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 
+import javax.annotation.Nonnull;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import javax.validation.constraints.NotNull;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Builder
-@Data()
+@Data
 public class Developer {
     @Id
     @GeneratedValue
@@ -21,13 +22,21 @@ public class Developer {
 
     private String firstname;
     private String lastname;
-    private final Set<String> programmingLanguages=new HashSet<>();
+    private String programmingLanguages;
 
     public void addLanguages(String languages) {
-        programmingLanguages.addAll(Arrays.asList(languages.split(",")));
+        List<String> strings = Arrays.asList(languages.split(","));
+        addLanguages(strings);
     }
 
     public void addLanguages(Collection<String> languages) {
-        programmingLanguages.addAll(languages);
+        Set<String> all = getLanguages();
+        all.addAll(languages);
+        programmingLanguages=all.stream().collect(Collectors.joining(","));
+    }
+
+    public Set<String> getLanguages() {
+        String[] split = (programmingLanguages!=null) ? programmingLanguages.split(",") : new String[0];
+        return (split!=null) ? new HashSet<>(Arrays.asList(split)) : Collections.EMPTY_SET;
     }
 }

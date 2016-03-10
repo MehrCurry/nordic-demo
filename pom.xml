@@ -4,7 +4,7 @@
 
     <groupId>org.test</groupId>
     <artifactId>nordic</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
     <packaging>jar</packaging>
 
     <name>nordic</name>
@@ -259,9 +259,9 @@
                     <flowInitContext>
                         <masterBranchName>master</masterBranchName>
                         <developBranchName>develop</developBranchName>
-                        <featureBranchPrefix>feature-</featureBranchPrefix>
-                        <releaseBranchPrefix>release-</releaseBranchPrefix>
-                        <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
+                        <featureBranchPrefix>feature/</featureBranchPrefix>
+                        <releaseBranchPrefix>release/</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
                         <versionTagPrefix>blither-</versionTagPrefix>
                     </flowInitContext>
                 </configuration>

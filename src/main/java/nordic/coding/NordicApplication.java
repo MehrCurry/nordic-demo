@@ -2,6 +2,7 @@ package nordic.coding;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * = Asciidoclet
@@ -29,7 +30,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class NordicApplication {
+    private NordicApplication() {};
     public static void main(String[] args) {
-        SpringApplication.run(NordicApplication.class, args);
+        try (ConfigurableApplicationContext ctx = SpringApplication.run(NordicApplication.class, args)) {
+            // Autoclose!
+        }
     }
 }

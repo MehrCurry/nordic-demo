@@ -2,13 +2,10 @@ package nordic.coding.entity;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 
-import javax.annotation.Nonnull;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -37,6 +34,6 @@ public class Developer {
 
     public Set<String> getLanguages() {
         String[] split = (programmingLanguages!=null) ? programmingLanguages.split(",") : new String[0];
-        return (split!=null) ? new HashSet<>(Arrays.asList(split)) : Collections.EMPTY_SET;
+        return (split!=null) ? new HashSet<>(Arrays.asList(split)) : Collections.emptySet();
     }
 }

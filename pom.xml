@@ -224,34 +224,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.6.201602180812</version>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <destFile>${sonar.jacoco.reportPath}</destFile>
-                        </configuration>
-                        <id>pre-test</id>
-                        <phase>process-test-classes</phase>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <configuration>
-                            <destFile>${sonar.jacoco.itReportPath}</destFile>
-                        </configuration>
-                        <id>pre-itest</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>prepare-agent-integration</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>external.atlassian.jgitflow</groupId>
                 <artifactId>jgitflow-maven-plugin</artifactId>
@@ -263,7 +235,7 @@
                         <featureBranchPrefix>feature/</featureBranchPrefix>
                         <releaseBranchPrefix>release/</releaseBranchPrefix>
                         <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
-                        <versionTagPrefix>blither-</versionTagPrefix>
+                        <versionTagPrefix>nordic-</versionTagPrefix>
                     </flowInitContext>
                 </configuration>
             </plugin>
@@ -332,4 +304,42 @@
             </snapshots>
         </repository>
     </repositories>
+    <profiles>
+        <profile>
+            <id>coverage</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>0.7.6.201602180812</version>
+                        <executions>
+                            <execution>
+                                <configuration>
+                                    <destFile>${sonar.jacoco.reportPath}</destFile>
+                                </configuration>
+                                <id>pre-test</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <configuration>
+                                    <destFile>${sonar.jacoco.itReportPath}</destFile>
+                                </configuration>
+                                <id>pre-itest</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>prepare-agent-integration</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
 </project>

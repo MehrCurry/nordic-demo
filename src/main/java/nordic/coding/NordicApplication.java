@@ -30,10 +30,7 @@ import org.springframework.context.ConfigurableApplicationContext;
  */
 @SpringBootApplication
 public class NordicApplication {
-    private NordicApplication() {};
     public static void main(String[] args) {
-        try (ConfigurableApplicationContext ctx = SpringApplication.run(NordicApplication.class, args)) {
-            // Autoclose!
-        }
+        SpringApplication.run(NordicApplication.class, args);
     }
 }

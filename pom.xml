@@ -23,14 +23,14 @@
         <asciidoctorj.version>1.5.4</asciidoctorj.version>
         <asciidoclet.version>1.5.4</asciidoclet.version>
         <jruby.version>1.7.21</jruby.version>
-        <project.scm.id>bitbucket-server<project.scm.id>
+        <project.scm.id>bitbucket-server</project.scm.id>
         <sonar.jacoco.reportMissing.force.zero>true</sonar.jacoco.reportMissing.force.zero>
         <sonar.jacoco.reportPath>${project.build.directory}/jacoco.exec</sonar.jacoco.reportPath>
         <sonar.jacoco.itReportPath>${project.build.directory}/jacoco-it.exec</sonar.jacoco.itReportPath>
     </properties>
     <scm>
-        <connection>scm:git:http://jenkins@localhost:7990/scm/test/nordic-demo.git</connection>
-        <developerConnection>scm:git:http://jenkins@localhost:7990/scm/test/nordic-demo.git</developerConnection>
+        <connection>scm:git:http://192.168.17.35:7990/scm/test/nordic-demo.git</connection>
+        <developerConnection>scm:git:http://192.168.17.35:7990/scm/test/nordic-demo.git</developerConnection>
     </scm>
     <parent>
         <groupId>org.springframework.boot</groupId>

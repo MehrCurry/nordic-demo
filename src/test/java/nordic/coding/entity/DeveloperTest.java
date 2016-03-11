@@ -34,4 +34,15 @@ public class DeveloperTest {
         assertThat(dev.getLanguages()).doesNotContain("Scala");
         assertThat(dev.getLanguages().size()).isEqualTo(4);
     }
+
+    @Test
+    public void EmptyLanguagesTest() {
+        Developer dev = Developer.builder()
+                .firstname("JUnit")
+                .lastname("Test")
+                .build();
+
+        assertThat(dev.getLanguages()).hasSize(0);
+    }
+
 }

@@ -1,2 +1,6 @@
-job1:
+compile:
   script: "mvn package"
+site:
+  script: "mvn site"
+sonar:
+  script: "mvn sonar:sonar"

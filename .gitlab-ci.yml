@@ -5,3 +5,10 @@ before_script:
 
 build:
   script: "mvn install site -B"
+
+deploy:
+  stage: build
+  script:
+    - mvn deploy -B
+  only:
+    - develop

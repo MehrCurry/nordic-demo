@@ -5,6 +5,10 @@ before_script:
 
 build:
   script: "mvn install site -B"
+  artifacts:
+    paths:
+      - target/nordic*.jar
+      - target/site
 
 deploy:
   stage: build

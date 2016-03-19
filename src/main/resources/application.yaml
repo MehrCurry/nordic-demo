@@ -12,4 +12,4 @@ spring:
 spring:
   profile: itest
   datasource:
-    url: jdbc:derby:memory;create=true
+    url: jdbc:derby:memory:database;create=true

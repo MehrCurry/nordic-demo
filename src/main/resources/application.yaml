@@ -1,12 +1,15 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:derby:database;create=true
+    driver-class-name: org.apache.derby.jdbc.EmbeddedDriver
+    test-on-borrow: true
+    validation-query: values 1
+    validation-interval: 0
 ---
 spring:
-    profiles: itest
-
-    jpa:
-        database: MYSQL
-        hibernate:
-            ddl-auto: create-drop
-    datasource:
-        url: jdbc:mysql://db/nordic?createDatabaseIfNotExist=true
-        username: admin
-        password: 123456
+  profile: itest
+  datasource:
+    url: jdbc:derby:memory;create=true

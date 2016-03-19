@@ -4,10 +4,22 @@ before_script:
   - apt-get update && apt-get -qqy install graphviz
 
 build:
+  stage: build
   script: "mvn install site -B"
+  artifacts:
+    paths:
+      - target/nordic*.jar
+      - target/site
+
+test:
+  stage: test
+  script: "mvn verify -B"
 
 deploy:
-  stage: build
+  stage: deploy
+  only:
+    - master
+    - develop
   script:
     - mvn deploy -B
   only:

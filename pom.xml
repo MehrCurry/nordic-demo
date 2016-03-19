@@ -29,8 +29,8 @@
         <sonar.jacoco.itReportPath>${project.build.directory}/jacoco-it.exec</sonar.jacoco.itReportPath>
     </properties>
     <scm>
-        <connection>scm:git:http://192.168.17.35:7990/scm/test/nordic-demo.git</connection>
-        <developerConnection>scm:git:http://192.168.17.35:7990/scm/test/nordic-demo.git</developerConnection>
+        <connection>scm:git:http://raspi3/gzockoll/nordic-demo.git</connection>
+        <developerConnection>scm:git:http://raspi3/gzockoll/nordic-demo.git</developerConnection>
     </scm>
     <parent>
         <groupId>org.springframework.boot</groupId>

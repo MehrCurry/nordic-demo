@@ -24,6 +24,7 @@ public class Developer {
     private String firstname;
     private String lastname;
     private String programmingLanguages;
+    private String email;
 
     public void addLanguages(String languages) {
         List<String> strings = Arrays.asList(languages.split(","));

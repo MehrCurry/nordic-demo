@@ -19,6 +19,14 @@ test:
       paths:
       - target/
 
+security:
+  stage: test
+  script: "mvn verify -Psecurity -B"
+  cache:
+      untracked: true
+      paths:
+      - target/
+
 deploy:
   stage: deploy
   only:

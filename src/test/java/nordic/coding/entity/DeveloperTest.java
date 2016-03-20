@@ -1,6 +1,5 @@
 package nordic.coding.entity;
 
-import com.google.common.collect.ImmutableSet;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -36,7 +35,7 @@ public class DeveloperTest {
     }
 
     @Test
-    public void EmptyLanguagesTest() {
+    public void emptyLanguagesTest() {
         Developer dev = Developer.builder()
                 .firstname("JUnit")
                 .lastname("Test")
@@ -45,4 +44,14 @@ public class DeveloperTest {
         assertThat(dev.getLanguages()).hasSize(0);
     }
 
+    @Test
+    public void getLanguagesTest() {
+        Developer dev = Developer.builder()
+                .firstname("JUnit")
+                .lastname("Test")
+                .build();
+        dev.addLanguages("Java, Groovy, C");
+
+        assertThat(dev.getLanguages()).hasSize(3);
+    }
 }

@@ -33,3 +33,13 @@ databaseChangeLog:
               - column:
                   name: programming_languages
                   type: varchar(255)
+  - changeSet:
+      id: 3
+      author: gzockoll
+      changes:
+        - addColumn:
+            tableName: developer
+            columns:
+              - column:
+                  name: email
+                  type: varchar(255)

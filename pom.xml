@@ -32,6 +32,16 @@
         <connection>scm:git:http://raspi3/gzockoll/nordic-demo.git</connection>
         <developerConnection>scm:git:http://raspi3/gzockoll/nordic-demo.git</developerConnection>
     </scm>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus</id>
+            <url>http://docker:8081/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus</id>
+            <url>http://docker:8081/content/repositories/releases</url>
+        </repository>
+    </distributionManagement>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>

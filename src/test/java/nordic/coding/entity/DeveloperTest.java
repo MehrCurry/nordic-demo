@@ -54,4 +54,15 @@ public class DeveloperTest {
 
         assertThat(dev.getLanguages()).hasSize(3);
     }
+
+    @Test
+    public void testEmail() {
+        Developer dev = Developer.builder()
+                .firstname("JUnit")
+                .lastname("Test")
+                .email("junit@test.com")
+                .build();
+
+        assertThat(dev.getEmail()).isEqualTo("junit@test.com");
+    }
 }

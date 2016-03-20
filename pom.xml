@@ -130,21 +130,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>de.saumya.mojo</groupId>
-                <artifactId>gem-maven-plugin</artifactId>
-                <version>1.1.4</version>
-                <configuration>
-                    <includeRubygemsInResources>true</includeRubygemsInResources>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>initialize</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
@@ -290,6 +275,21 @@
             <id>doc</id>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>de.saumya.mojo</groupId>
+                        <artifactId>gem-maven-plugin</artifactId>
+                        <version>1.1.4</version>
+                        <configuration>
+                            <includeRubygemsInResources>true</includeRubygemsInResources>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>initialize</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-site-plugin</artifactId>

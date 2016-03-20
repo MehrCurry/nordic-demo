@@ -4,7 +4,7 @@
 
     <groupId>org.test</groupId>
     <artifactId>nordic</artifactId>
-    <version>0.4.0</version>
+    <version>0.9.0</version>
     <packaging>jar</packaging>
 
     <name>nordic</name>
@@ -13,7 +13,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <docker.baseImage>java:8</docker.baseImage>
+        <docker.baseImage>anapsix/alpine-java:8</docker.baseImage>
         <docker.imagePrefix>${user.name}</docker.imagePrefix>
         <docker.imageName>nordic-demo</docker.imageName>
         <docker.imageVersion>latest</docker.imageVersion>
@@ -23,15 +23,25 @@
         <asciidoctorj.version>1.5.4</asciidoctorj.version>
         <asciidoclet.version>1.5.4</asciidoclet.version>
         <jruby.version>1.7.21</jruby.version>
-        <project.scm.id>bitbucket-server</project.scm.id>
+        <project.scm.id>raspi3</project.scm.id>
         <sonar.jacoco.reportMissing.force.zero>true</sonar.jacoco.reportMissing.force.zero>
         <sonar.jacoco.reportPath>${project.build.directory}/jacoco.exec</sonar.jacoco.reportPath>
         <sonar.jacoco.itReportPath>${project.build.directory}/jacoco-it.exec</sonar.jacoco.itReportPath>
     </properties>
     <scm>
-        <connection>scm:git:http://192.168.17.35:7990/scm/test/nordic-demo.git</connection>
-        <developerConnection>scm:git:http://192.168.17.35:7990/scm/test/nordic-demo.git</developerConnection>
+        <connection>scm:git:http://raspi3/gzockoll/nordic-demo.git</connection>
+        <developerConnection>scm:git:http://raspi3/gzockoll/nordic-demo.git</developerConnection>
     </scm>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus</id>
+            <url>http://docker:8081/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus</id>
+            <url>http://docker:8081/content/repositories/releases</url>
+        </repository>
+    </distributionManagement>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -69,9 +79,15 @@
             <version>1.16.4</version>
         </dependency>
         <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+        </dependency>
+        <!-- Test Scope -->
+        <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>3.1.0</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -124,81 +140,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>de.saumya.mojo</groupId>
-                <artifactId>gem-maven-plugin</artifactId>
-                <version>1.1.4</version>
-                <configuration>
-                    <includeRubygemsInResources>true</includeRubygemsInResources>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>initialize</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.4</version>
-                <configuration>
-                    <!-- disable generateReports if you don't want to include the built-in reports -->
-                    <generateReports>true</generateReports>
-                    <generateSitemap>true</generateSitemap>
-                    <relativizeDecorationLinks>false</relativizeDecorationLinks>
-                    <locales>en</locales>
-                    <inputEncoding>UTF-8</inputEncoding>
-                    <outputEncoding>UTF-8</outputEncoding>
-                    <asciidoc>
-                        <!-- optional site-wide AsciiDoc attributes -->
-                        <attributes>
-                            <icons>font</icons>
-                            <source-highlighter>coderay</source-highlighter>
-                            <coderay-css>style</coderay-css>
-                            <toclevels>2</toclevels>
-                        </attributes>
-                        <templateDirs>
-                            <dir>src/site/asciidoc/templates</dir>
-                        </templateDirs>
-                        <requires>
-                            <require>asciidoctor-diagram</require>
-                        </requires>
-                        <attributes>
-                            <source-highlighter>coderay</source-highlighter>
-                            <coderay-css>style</coderay-css>
-                        </attributes>
-                    </asciidoc>
-                    <moduleExcludes>
-                        <asciidoc>**/_*.adoc</asciidoc>
-                    </moduleExcludes>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.asciidoctor</groupId>
-                        <artifactId>asciidoctor-maven-plugin</artifactId>
-                        <version>${asciidoctor.maven.plugin.version}</version>
-                    </dependency>
-                    <!-- Comment this section to use the default jruby artifact provided by the plugin -->
-                    <dependency>
-                        <groupId>org.jruby</groupId>
-                        <artifactId>jruby-complete</artifactId>
-                        <version>${jruby.version}</version>
-                    </dependency>
-                    <!-- Comment this section to use the default AsciidoctorJ artifact provided by the plugin -->
-                    <dependency>
-                        <groupId>org.asciidoctor</groupId>
-                        <artifactId>asciidoctorj</artifactId>
-                        <version>${asciidoctorj.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.asciidoctor</groupId>
-                        <artifactId>asciidoctorj-diagram</artifactId>
-                        <version>RELEASE</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
@@ -224,34 +165,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.6.201602180812</version>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <destFile>${sonar.jacoco.reportPath}</destFile>
-                        </configuration>
-                        <id>pre-test</id>
-                        <phase>process-test-classes</phase>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <configuration>
-                            <destFile>${sonar.jacoco.itReportPath}</destFile>
-                        </configuration>
-                        <id>pre-itest</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>prepare-agent-integration</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>external.atlassian.jgitflow</groupId>
                 <artifactId>jgitflow-maven-plugin</artifactId>
@@ -263,7 +176,7 @@
                         <featureBranchPrefix>feature/</featureBranchPrefix>
                         <releaseBranchPrefix>release/</releaseBranchPrefix>
                         <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
-                        <versionTagPrefix>blither-</versionTagPrefix>
+                        <versionTagPrefix>nordic-</versionTagPrefix>
                     </flowInitContext>
                 </configuration>
             </plugin>
@@ -309,16 +222,6 @@
             </plugin>
         </plugins>
     </reporting>
-    <distributionManagement>
-        <repository>
-            <id>nexus</id>
-            <url>http://192.168.99.100:8081/content/repositories/releases</url>
-        </repository>
-        <snapshotRepository>
-            <id>nexus</id>
-            <url>http://192.168.99.100:8081/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
     <repositories>
         <repository>
             <id>rubygems-proxy-releases</id>
@@ -332,4 +235,124 @@
             </snapshots>
         </repository>
     </repositories>
+    <profiles>
+        <profile>
+            <id>coverage</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>0.7.6.201602180812</version>
+                        <executions>
+                            <execution>
+                                <configuration>
+                                    <destFile>${sonar.jacoco.reportPath}</destFile>
+                                </configuration>
+                                <id>pre-test</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <configuration>
+                                    <destFile>${sonar.jacoco.itReportPath}</destFile>
+                                </configuration>
+                                <id>pre-itest</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>prepare-agent-integration</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>doc</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>de.saumya.mojo</groupId>
+                        <artifactId>gem-maven-plugin</artifactId>
+                        <version>1.1.4</version>
+                        <configuration>
+                            <includeRubygemsInResources>true</includeRubygemsInResources>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>initialize</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-site-plugin</artifactId>
+                        <version>3.4</version>
+                        <configuration>
+                            <!-- disable generateReports if you don't want to include the built-in reports -->
+                            <generateReports>true</generateReports>
+                            <generateSitemap>true</generateSitemap>
+                            <relativizeDecorationLinks>false</relativizeDecorationLinks>
+                            <locales>en</locales>
+                            <inputEncoding>UTF-8</inputEncoding>
+                            <outputEncoding>UTF-8</outputEncoding>
+                            <asciidoc>
+                                <!-- optional site-wide AsciiDoc attributes -->
+                                <attributes>
+                                    <icons>font</icons>
+                                    <source-highlighter>coderay</source-highlighter>
+                                    <coderay-css>style</coderay-css>
+                                    <toclevels>2</toclevels>
+                                </attributes>
+                                <templateDirs>
+                                    <dir>src/site/asciidoc/templates</dir>
+                                </templateDirs>
+                                <requires>
+                                    <require>asciidoctor-diagram</require>
+                                </requires>
+                                <attributes>
+                                    <source-highlighter>coderay</source-highlighter>
+                                    <coderay-css>style</coderay-css>
+                                </attributes>
+                            </asciidoc>
+                            <moduleExcludes>
+                                <asciidoc>**/_*.adoc</asciidoc>
+                            </moduleExcludes>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.asciidoctor</groupId>
+                                <artifactId>asciidoctor-maven-plugin</artifactId>
+                                <version>${asciidoctor.maven.plugin.version}</version>
+                            </dependency>
+                            <!-- Comment this section to use the default jruby artifact provided by the plugin -->
+                            <dependency>
+                                <groupId>org.jruby</groupId>
+                                <artifactId>jruby-complete</artifactId>
+                                <version>${jruby.version}</version>
+                            </dependency>
+                            <!-- Comment this section to use the default AsciidoctorJ artifact provided by the plugin -->
+                            <dependency>
+                                <groupId>org.asciidoctor</groupId>
+                                <artifactId>asciidoctorj</artifactId>
+                                <version>${asciidoctorj.version}</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.asciidoctor</groupId>
+                                <artifactId>asciidoctorj-diagram</artifactId>
+                                <version>RELEASE</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
 </project>

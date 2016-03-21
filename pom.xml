@@ -420,10 +420,7 @@
                                             offline : Disable the synchronization mechanism.
                                             -->
                                             <updates>daily</updates><!-- was: auto -->
-                                            <jdbcDriver>com.mysql.jdbc.Driver</jdbcDriver>
-                                            <jdbcUrl>jdbc:mysql://qnap:3306/victims</jdbcUrl>
-                                            <jdbcUser>victims</jdbcUser>
-                                            <jdbcPass>eDjQxNU62rzVjeWR</jdbcPass>
+                                            <jdbcUrl>jdbc:h2:file:target/victims</jdbcUrl>
                                         </rule>
                                     </rules>
                                 </configuration>

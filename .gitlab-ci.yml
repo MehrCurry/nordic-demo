@@ -7,9 +7,6 @@ build:
       untracked: true
       paths:
       - target/
-  artifacts:
-    paths:
-      - target/nordic*.jar
 
 test:
   stage: test
@@ -34,5 +31,3 @@ deploy:
     - develop
   script:
     - mvn deploy -B
-  only:
-    - develop

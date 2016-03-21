@@ -369,6 +369,11 @@
                                 <version>1.3.4</version>
                                 <type>jar</type>
                             </dependency>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>5.1.38</version>
+                            </dependency>
                         </dependencies>
                         <executions>
                             <execution>
@@ -415,6 +420,10 @@
                                             offline : Disable the synchronization mechanism.
                                             -->
                                             <updates>daily</updates><!-- was: auto -->
+                                            <jdbcDriver>com.mysql.jdbc.Driver</jdbcDriver>
+                                            <jdbcUrl>jdbc:mysql://qnap:3306/victims</jdbcUrl>
+                                            <jdbcUser>victims</jdbcUser>
+                                            <jdbcPass>eDjQxNU62rzVjeWR</jdbcPass>
                                         </rule>
                                     </rules>
                                 </configuration>

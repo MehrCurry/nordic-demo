@@ -18,7 +18,7 @@ test:
 
 security:
   stage: test
-  script: "mvn verify -Psecurity -B"
+  script: "mvn verify -Psecurity -B -X"
   cache:
       untracked: true
       paths:

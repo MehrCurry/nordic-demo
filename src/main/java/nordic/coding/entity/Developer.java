@@ -1,5 +1,6 @@
 package nordic.coding.entity;
 
+import com.google.common.collect.Sets;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,6 +40,6 @@ public class Developer {
 
     public Set<String> getLanguages() {
         String[] split = (programmingLanguages!=null) ? programmingLanguages.split(",") : new String[0];
-        return (split!=null) ? new HashSet<>(Arrays.asList(split)) : Collections.emptySet();
+        return (split!=null) ? new HashSet<>(Arrays.asList(split)) : new HashSet<String>();
     }
 }

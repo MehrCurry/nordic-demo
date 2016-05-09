@@ -13,3 +13,7 @@ spring:
   profile: itest
   datasource:
     url: jdbc:derby:memory:database;create=true
+  profile: itest
+    datasource:
+      url: jdbc:mysql://db:3306/nordic?createDatabaseIfNotExist=true
+      driver-class-name: com.mysql.jdbc.Driver

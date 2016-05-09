@@ -4,13 +4,15 @@ spring:
       ddl-auto: validate
   datasource:
     url: jdbc:mysql://db:3306/nordic?createDatabaseIfNotExist=true
-    ## driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
 ---
 spring:
-  profile: itest
+  profiles: itest
   datasource:
     url: jdbc:derby:memory:database;create=true
-    ## driver-class-name: org.apache.derby.jdbc.EmbeddedDriver
+    driver-class-name: org.apache.derby.jdbc.EmbeddedDriver
     test-on-borrow: true
     validation-query: values 1
     validation-interval: 0

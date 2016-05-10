@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static com.jayway.restassured.RestAssured.when;
@@ -20,7 +19,6 @@ import static com.jayway.restassured.RestAssured.when;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = NordicApplication.class)
 @WebIntegrationTest("server.port:0")
-@ActiveProfiles("itest")
 public class DeveloperResourceIT {
     @Value("${local.server.port}")
     private int serverPort;

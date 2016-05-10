@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,7 @@ public class Developer {
         programmingLanguages=all.stream().collect(Collectors.joining(","));
     }
 
+    @Transient
     public Set<String> getLanguages() {
         String[] split = (programmingLanguages!=null) ? programmingLanguages.split(",") : new String[0];
         return (split!=null) ? new HashSet<>(Arrays.asList(split)) : new HashSet<String>();

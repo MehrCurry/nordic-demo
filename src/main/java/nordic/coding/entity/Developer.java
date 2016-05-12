@@ -1,15 +1,13 @@
 package nordic.coding.entity;
 
-import com.google.common.collect.Sets;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -18,14 +16,14 @@ import java.util.stream.Collectors;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Developer {
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Developer extends AbstractEntity {
 
+    @Size(min = 2)
     private String firstname;
+    @Size(min = 2)
     private String lastname;
     private String programmingLanguages;
+    @ValidEmailAddress
     private String email;
 
     public void addLanguages(String languages) {

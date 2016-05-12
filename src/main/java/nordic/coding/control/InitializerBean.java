@@ -19,9 +19,9 @@ public class InitializerBean  implements ApplicationListener<ContextRefreshedEve
     public void onApplicationEvent(final ContextRefreshedEvent event) {
         if (repository.count()==0) {
             final Developer developer = Developer.builder()
-                    .firstname("Guido")
-                    .lastname("Zockoll")
-                    .email("gzockoll[at]gmail.com")
+                    .firstname("Donald")
+                    .lastname("Duck")
+                    .email("duck@disney.com")
                     .programmingLanguages("Java,Groovy,JavaScript,Ruby")
                     .build();
             repository.save(developer);

@@ -35,11 +35,13 @@ public class DeveloperResourceIT {
         dev1 = Developer.builder()
                 .firstname("JUnit")
                 .lastname("Test")
+                .email("a@b.com")
                 .build();
         dev1.addLanguages("Java, Ruby, Groovy");
         dev2 = Developer.builder()
                 .firstname("Integration")
                 .lastname("Test")
+                .email("a@b.com")
                 .build();
         dev2.addLanguages("JavaScript, PHP, C++");
         repository.save(ImmutableList.of(dev1, dev2));

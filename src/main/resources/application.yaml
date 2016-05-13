@@ -11,8 +11,8 @@ spring:
 ---
 spring:
   profiles: mysql
-    datasource:
-      url: jdbc:mysql://db:3306/nordic?createDatabaseIfNotExist=true
-      username: root
-      password: 123456
-      driver-class-name: com.mysql.jdbc.Driver
+  datasource:
+    url: jdbc:mysql://db:3306/nordic?createDatabaseIfNotExist=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver

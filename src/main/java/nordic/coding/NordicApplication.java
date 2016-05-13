@@ -1,7 +1,12 @@
 package nordic.coding;
 
+import com.google.common.eventbus.EventBus;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 
 /**
  * = Asciidoclet
@@ -28,8 +33,25 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author https://github.com/johncarl81[John Ericksen]
  */
 @SpringBootApplication
-public class NordicApplication {
+@EnableSpringConfigured
+public class NordicApplication implements BeanPostProcessor {
     public static void main(String[] args) {
         SpringApplication.run(NordicApplication.class, args);
+    }
+
+    @Bean
+    public EventBus eventBus() {
+        return new EventBus();
+    }
+
+    @Override
+    public Object postProcessBeforeInitialization(Object o, String s) throws BeansException {
+        return o;
+    }
+
+    @Override
+    public Object postProcessAfterInitialization(Object o, String s) throws BeansException {
+        eventBus().register(o);
+        return o;
     }
 }

@@ -1,9 +1,6 @@
 package nordic.coding.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Transient;
@@ -14,6 +11,7 @@ import java.util.stream.Collectors;
 @Entity
 @Builder
 @Data
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Developer extends AbstractEntity {

@@ -328,11 +328,11 @@
     <distributionManagement>
         <repository>
             <id>nexus</id>
-            <url>http://192.168.99.100:8081/content/repositories/releases</url>
+            <url>http://raspi3:8081/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
             <id>nexus</id>
-            <url>http://192.168.99.100:8081/content/repositories/snapshots</url>
+            <url>http://raspi3:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
     <repositories>

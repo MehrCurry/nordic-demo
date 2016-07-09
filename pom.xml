@@ -29,8 +29,7 @@
         <sonar.jacoco.itReportPath>${project.build.directory}/jacoco-it.exec</sonar.jacoco.itReportPath>
     </properties>
     <scm>
-        <connection>scm:git:http://192.168.17.35:7990/scm/test/nordic-demo.git</connection>
-        <developerConnection>scm:git:http://192.168.17.35:7990/scm/test/nordic-demo.git</developerConnection>
+6        <developerConnection>scm:git:https://github.com/MehrCurry/nordic-demo.git</developerConnection>
     </scm>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -266,6 +265,22 @@
                         <versionTagPrefix>blither-</versionTagPrefix>
                     </flowInitContext>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <goals>
+                            <goal>perform</goal>
+                        </goals>
+                        <configuration>
+                            <pomFileName>pom.xml</pomFileName>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

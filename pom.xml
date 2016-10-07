@@ -29,7 +29,7 @@
         <sonar.jacoco.itReportPath>${project.build.directory}/jacoco-it.exec</sonar.jacoco.itReportPath>
     </properties>
     <scm>
-6        <developerConnection>scm:git:https://github.com/MehrCurry/nordic-demo.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/MehrCurry/nordic-demo.git</developerConnection>
     </scm>
     <parent>
         <groupId>org.springframework.boot</groupId>
